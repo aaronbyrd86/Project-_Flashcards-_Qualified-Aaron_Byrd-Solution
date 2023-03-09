@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readDeck, readCard, updateCard } from "./utils/api";
+import CardForm from "./CardForm";
 
 function EditCard() {
   const history = useHistory();
@@ -69,36 +70,7 @@ function EditCard() {
           </li>
         </ol>
       </nav>
-      <form onSubmit={submitHandler}>
-        <h2>Edit Card</h2>
-        <div className="form-group">
-          <label htmlFor="front">Front</label>
-          <textarea
-            type="text"
-            className="form-control"
-            id="front"
-            onChange={handleFrontChange}
-            value={front}
-          ></textarea>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="back">Back</label>
-          <textarea
-            className="form-control"
-            id="back"
-            onChange={handleBackChange}
-            value={back}
-          ></textarea>
-        </div>
-
-        <Link to={`/decks/${params.deckId}/`} className="btn btn-secondary">
-          Cancel
-        </Link>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      <CardForm deck={deck} front={front} back={back} handleFrontChange={handleFrontChange} handleBackChange={handleBackChange} submitHandler={submitHandler}/>
     </div>
   );
 }

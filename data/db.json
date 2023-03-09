@@ -14,6 +14,11 @@
       "name": "My new deck",
       "description": "A deck for testing",
       "id": 3
+    },
+    {
+      "name": "New deck 2",
+      "description": "another new deck i gone and made",
+      "id": 4
     }
   ],
   "cards": [

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { updateDeck, readDeck } from "./utils/api";
+import DeckForm from "./DeckForm";
 
 function EditDeck() {
   const history = useHistory();
@@ -26,6 +27,11 @@ function EditDeck() {
 
     loadDeck();
   }, [params]);
+
+
+  const cancelHandler = () => {
+    history.push(`/decks/${params.deckId}`);
+  }
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -65,36 +71,7 @@ function EditDeck() {
           </li>
         </ol>
       </nav>
-      <form onSubmit={submitHandler}>
-        <h2>Edit Deck</h2>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Deck Name"
-            id="name"
-            onChange={handleNameChange}
-            value={name}
-          ></input>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="desc">Description</label>
-          <textarea
-            className="form-control"
-            placeholder="Brief description of the deck"
-            id="desc"
-            onChange={handleDescChange}
-            value={desc}
-          ></textarea>
-        </div>
-
-        <Link to={`/decks/${params.deckId}`} className="btn btn-secondary">Cancel</Link>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      <DeckForm name={name} desc={desc} handleNameChange={handleNameChange} handleDescChange={handleDescChange} submitHandler={submitHandler} cancelHandler={cancelHandler}/>
     </div>
   );
 }
